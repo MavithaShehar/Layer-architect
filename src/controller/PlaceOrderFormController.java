@@ -108,7 +108,8 @@ public class PlaceOrderFormController {
                     //Connection connection = DBConnection.getDbConnection().getConnection();
 
                     try {
-                        if (!existCustomer(newValue + "")) {
+
+                        if ( !existCustomer(newValue + "")) {
 //                            "There is no such customer associated with the id " + id
                             new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + newValue + "").show();
                         }
