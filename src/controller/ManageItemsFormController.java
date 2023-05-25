@@ -80,13 +80,7 @@ public class ManageItemsFormController {
         tblItems.getItems().clear();
 
         try {
-            /*Get all items*/
 
-           /* Connection connection = DBConnection.getDbConnection().getConnection();
-            Statement stm = connection.createStatement();
-            ResultSet rst = stm.executeQuery("SELECT * FROM Item");*/
-
-           // ItemsDAO itemsDAO = new ItemsDAOimpl();
             List<ItemDTO> allItem = itemsDAO.getAll();
 
             for (ItemDTO itemDTO : allItem) {
@@ -157,12 +151,6 @@ public class ManageItemsFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
             }
 
-           /* Connection connection = DBConnection.getDbConnection().getConnection();
-            PreparedStatement pstm = connection.prepareStatement("DELETE FROM Item WHERE code=?");
-            pstm.setString(1, code);
-            pstm.executeUpdate();*/
-
-           // ItemsDAO itemsDAO = new ItemsDAOimpl();
             boolean isDelete = itemsDAO.delete(code);
 
             tblItems.getItems().remove(tblItems.getSelectionModel().getSelectedItem());
@@ -204,15 +192,6 @@ public class ManageItemsFormController {
                 }
                 //Save Item
 
-               /* Connection connection = DBConnection.getDbConnection().getConnection();
-                PreparedStatement pstm = connection.prepareStatement("INSERT INTO Item (code, description, unitPrice, qtyOnHand) VALUES (?,?,?,?)");
-                pstm.setString(1, code);
-                pstm.setString(2, description);
-                pstm.setBigDecimal(3, unitPrice);
-                pstm.setInt(4, qtyOnHand);
-                pstm.executeUpdate();*/
-
-             //   ItemsDAO itemsDAO = new ItemsDAOimpl();
                 boolean isSave = itemsDAO.saveAll(new ItemDTO(code,description,unitPrice,qtyOnHand));
 
                 tblItems.getItems().add(new ItemTM(code, description, unitPrice, qtyOnHand));
@@ -229,15 +208,7 @@ public class ManageItemsFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
                 }
                 /*Update Item*/
-                /*Connection connection = DBConnection.getDbConnection().getConnection();
-                PreparedStatement pstm = connection.prepareStatement("UPDATE Item SET description=?, unitPrice=?, qtyOnHand=? WHERE code=?");
-                pstm.setString(1, description);
-                pstm.setBigDecimal(2, unitPrice);
-                pstm.setInt(3, qtyOnHand);
-                pstm.setString(4, code);
-                pstm.executeUpdate();*/
 
-             //   ItemsDAO itemsDAO = new ItemsDAOimpl();
                 boolean isUpdate = itemsDAO.update(new ItemDTO(code,description,unitPrice,qtyOnHand));
 
                 ItemTM selectedItem = tblItems.getSelectionModel().getSelectedItem();
@@ -257,12 +228,7 @@ public class ManageItemsFormController {
 
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
-       /* Connection connection = DBConnection.getDbConnection().getConnection();
-        PreparedStatement pstm = connection.prepareStatement("SELECT code FROM Item WHERE code=?");
-        pstm.setString(1, code);
-        return pstm.executeQuery().next();*/
 
-      //  ItemsDAO itemsDAO = new ItemsDAOimpl();
         boolean isExistItem = itemsDAO.exist(code);
 
         return isExistItem;
@@ -272,17 +238,6 @@ public class ManageItemsFormController {
     private String generateNewId() {
         try {
 
-           /* Connection connection = DBConnection.getDbConnection().getConnection();
-            ResultSet rst = connection.createStatement().executeQuery("SELECT code FROM Item ORDER BY code DESC LIMIT 1;");
-            if (rst.next()) {
-                String id = rst.getString("code");
-                int newItemId = Integer.parseInt(id.replace("I00-", "")) + 1;
-                return String.format("I00-%03d", newItemId);
-            } else {
-                return "I00-001";
-            }*/
-
-            //ItemsDAO itemsDAO = new ItemsDAOimpl();
             String newId = itemsDAO.generateNewId();
 
         } catch (SQLException e) {
