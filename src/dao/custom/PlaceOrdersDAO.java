@@ -1,9 +1,7 @@
-package dao;
+package dao.custom;
 
-import db.DBConnection;
+import dao.CrudDAO;
 import model.OrderDTO;
-
-import java.sql.*;
 
 public interface PlaceOrdersDAO extends CrudDAO<OrderDTO> {
 

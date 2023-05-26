@@ -1,7 +1,8 @@
-package dao;
+package dao.custom.impl;
 
 
-import db.DBConnection;
+import dao.SQLUtil;
+import dao.custom.PlaceOrdersDAO;
 import model.OrderDTO;
 
 import java.sql.*;

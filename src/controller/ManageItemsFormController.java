@@ -1,9 +1,13 @@
 package controller;
 
+import bro.ItemsBOimpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.*;
-import db.DBConnection;
+import dao.custom.ItemsDAO;
+import dao.custom.ItemsDAO;
+import dao.custom.impl.CustomersDAOimpl;
+import dao.custom.impl.ItemsDAOimpl;
+import dao.custom.impl.ItemsDAOimpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,15 +20,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.CustomerDTO;
 import model.ItemDTO;
 import view.tdm.ItemTM;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -33,6 +35,10 @@ import java.util.List;
  **/
 
 public class ManageItemsFormController {
+
+    ItemsBOimpl itemsBO =  new ItemsBOimpl(); // dependansi injection
+
+
     public AnchorPane root;
     public JFXTextField txtCode;
     public JFXTextField txtDescription;
@@ -44,7 +50,6 @@ public class ManageItemsFormController {
     public JFXButton btnAddNewItem;
     private CustomersDAOimpl CustomerDAOimpl;
 
-   ItemsDAO itemsDAO = new ItemsDAOimpl(); // dependansi injection
 
     public void initialize() {
         tblItems.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -81,7 +86,7 @@ public class ManageItemsFormController {
 
         try {
 
-            List<ItemDTO> allItem = itemsDAO.getAll();
+            List<ItemDTO> allItem = itemsBO.getAllItem();
 
             for (ItemDTO itemDTO : allItem) {
                 tblItems.getItems().add(
@@ -151,7 +156,7 @@ public class ManageItemsFormController {
                 new Alert(Alert.AlertType.ERROR, "There is no such item associated with the id " + code).show();
             }
 
-            boolean isDelete = itemsDAO.delete(code);
+            boolean isDelete = itemsBO.deleteItem(code);
 
             tblItems.getItems().remove(tblItems.getSelectionModel().getSelectedItem());
             tblItems.getSelectionModel().clearSelection();
@@ -192,7 +197,7 @@ public class ManageItemsFormController {
                 }
                 //Save Item
 
-                boolean isSave = itemsDAO.saveAll(new ItemDTO(code,description,unitPrice,qtyOnHand));
+                boolean isSave = itemsBO.saveItem(new ItemDTO(code,description,unitPrice,qtyOnHand));
 
                 tblItems.getItems().add(new ItemTM(code, description, unitPrice, qtyOnHand));
 
@@ -209,7 +214,7 @@ public class ManageItemsFormController {
                 }
                 /*Update Item*/
 
-                boolean isUpdate = itemsDAO.update(new ItemDTO(code,description,unitPrice,qtyOnHand));
+                boolean isUpdate = itemsBO.updateItem(new ItemDTO(code,description,unitPrice,qtyOnHand));
 
                 ItemTM selectedItem = tblItems.getSelectionModel().getSelectedItem();
                 selectedItem.setDescription(description);
@@ -229,7 +234,7 @@ public class ManageItemsFormController {
 
     private boolean existItem(String code) throws SQLException, ClassNotFoundException {
 
-        boolean isExistItem = itemsDAO.exist(code);
+        boolean isExistItem = itemsBO.existItem(code);
 
         return isExistItem;
     }
@@ -238,7 +243,7 @@ public class ManageItemsFormController {
     private String generateNewId() {
         try {
 
-            String newId = itemsDAO.generateNewId();
+            String newId = itemsBO.generateNewItemId();
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();

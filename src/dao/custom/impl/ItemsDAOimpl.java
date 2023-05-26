@@ -1,6 +1,8 @@
-package dao;
+package dao.custom.impl;
 
-import db.DBConnection;
+import bro.ItemsBOimpl;
+import dao.SQLUtil;
+import dao.custom.ItemsDAO;
 import model.ItemDTO;
 
 import java.sql.*;
@@ -8,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsDAOimpl implements ItemsDAO {
+
+
     @Override
     public List<ItemDTO> getAll() throws SQLException, ClassNotFoundException {
 

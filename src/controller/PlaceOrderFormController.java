@@ -1,9 +1,17 @@
 package controller;
 
+import bro.PurchaseOrderBOimpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import dao.*;
+import dao.custom.CustomerDAO;
+import dao.custom.ItemsDAO;
+import dao.custom.OrderDetailDAO;
+import dao.custom.PlaceOrdersDAO;
+import dao.custom.impl.CustomersDAOimpl;
+import dao.custom.impl.ItemsDAOimpl;
+import dao.custom.impl.OrderDetailDAOimpl;
+import dao.custom.impl.PlaceOrdersDAOimpl;
 import db.DBConnection;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -28,7 +36,6 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -56,11 +63,11 @@ public class PlaceOrderFormController {
     public Label lblTotal;
     private String orderId;
 
-    CustomerDAO customerDAO = new CustomersDAOimpl();
+    /*CustomerDAO customerDAO = new CustomersDAOimpl();
     ItemsDAO itemsDAO = new ItemsDAOimpl();
     OrderDetailDAO orderDetailsDAO = new OrderDetailDAOimpl();
-    PlaceOrdersDAO orderDAO = new PlaceOrdersDAOimpl();
-    
+    PlaceOrdersDAO orderDAO = new PlaceOrdersDAOimpl();*/
+
     public void initialize() throws SQLException, ClassNotFoundException {
 
         tblOrderDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -335,15 +342,19 @@ public class PlaceOrderFormController {
 
     public boolean saveOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails) {
 
-        /*Transaction*/
-        Connection connection = null;
-        try {
+        PurchaseOrderBOimpl purchaseOrderBO = new PurchaseOrderBOimpl();
+        return purchaseOrderBO.purchaseOrder(orderId, orderDate, customerId, orderDetails);
 
+    }
+
+        /*Transaction*/
+       /* Connection connection = null;
+        try {
             connection = DBConnection.getDbConnection().getConnection();
 
             PlaceOrdersDAOimpl orderDAO = new PlaceOrdersDAOimpl();
             boolean b1 = orderDAO.exist(orderId);
-            /*if order id already exist*/
+            *//*if order id already exist*//*
             if (b1) {
                 return false;
             }
@@ -411,5 +422,5 @@ public class PlaceOrderFormController {
         }
         return null;
     }
-
+*/
 }
