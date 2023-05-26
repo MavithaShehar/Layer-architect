@@ -7,7 +7,7 @@ import model.OrderDTO;
 import java.sql.*;
 import java.util.List;
 
-public class PlaceOrdersDAOimpl implements CrudDAO<OrderDTO> {
+public class PlaceOrdersDAOimpl implements PlaceOrdersDAO {
     @Override
     public List<OrderDTO> getAll() throws SQLException, ClassNotFoundException {
         return null;

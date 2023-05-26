@@ -1,14 +1,15 @@
 package dao;
 
 import db.DBConnection;
+import model.OrderDTO;
 import model.OrderDetailDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public interface OrderDetailDAO {
+public interface OrderDetailDAO extends CrudDAO<OrderDetailDTO> {
 
-    public boolean saveOrderDetails(OrderDetailDTO dto) throws SQLException, ClassNotFoundException, SQLException ;
+// order ditals unic methord
 
 }

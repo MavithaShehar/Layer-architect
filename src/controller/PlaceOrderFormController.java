@@ -56,13 +56,11 @@ public class PlaceOrderFormController {
     public Label lblTotal;
     private String orderId;
 
-
-    CrudDAO<OrderDTO> orderDAO = new PlaceOrdersDAOimpl();
-    CrudDAO<CustomerDTO> customerDAO = new CustomersDAOimpl();
-    CrudDAO<ItemDTO> itemsDAO = new ItemsDAOimpl();
-    CrudDAO<OrderDetailDTO> orderDetailsDAO = new OrderDetailDAOimpl();
-
-
+    CustomerDAO customerDAO = new CustomersDAOimpl();
+    ItemsDAO itemsDAO = new ItemsDAOimpl();
+    OrderDetailDAO orderDetailsDAO = new OrderDetailDAOimpl();
+    PlaceOrdersDAO orderDAO = new PlaceOrdersDAOimpl();
+    
     public void initialize() throws SQLException, ClassNotFoundException {
 
         tblOrderDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));

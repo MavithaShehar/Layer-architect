@@ -44,7 +44,7 @@ public class ManageItemsFormController {
     public JFXButton btnAddNewItem;
     private CustomersDAOimpl CustomerDAOimpl;
 
-    CrudDAO<ItemDTO> itemsDAO = new ItemsDAOimpl(); // dependansi injection
+   ItemsDAO itemsDAO = new ItemsDAOimpl(); // dependansi injection
 
     public void initialize() {
         tblItems.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));

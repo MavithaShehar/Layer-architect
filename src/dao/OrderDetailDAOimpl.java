@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderDetailDAOimpl implements CrudDAO<OrderDetailDTO> {
+public class OrderDetailDAOimpl implements OrderDetailDAO {
     @Override
     public List<OrderDetailDTO> getAll() throws SQLException, ClassNotFoundException {
         return null;
