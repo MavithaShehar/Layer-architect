@@ -9,7 +9,7 @@ import model.ItemDTO;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ItemsBO {
+public interface ItemsBO extends SuperBO{
 
     ItemsDAO itemsDAO = new ItemsDAOimpl();
 

@@ -1,7 +1,5 @@
 package bro.custom;
 
-public interface PurchaseOrderBO {
-
-
+public interface PurchaseOrderBO extends SuperBO {
 
 }

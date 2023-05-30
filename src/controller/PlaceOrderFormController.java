@@ -1,18 +1,12 @@
 package controller;
 
-import bro.PurchaseOrderBOimpl;
+import bro.custom.impl.PurchaseOrderBOimpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import dao.custom.CustomerDAO;
-import dao.custom.ItemsDAO;
-import dao.custom.OrderDetailDAO;
-import dao.custom.PlaceOrdersDAO;
 import dao.custom.impl.CustomersDAOimpl;
 import dao.custom.impl.ItemsDAOimpl;
-import dao.custom.impl.OrderDetailDAOimpl;
 import dao.custom.impl.PlaceOrdersDAOimpl;
-import db.DBConnection;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
@@ -27,7 +21,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.CustomerDTO;
 import model.ItemDTO;
-import model.OrderDTO;
 import model.OrderDetailDTO;
 import view.tdm.OrderDetailTM;
 

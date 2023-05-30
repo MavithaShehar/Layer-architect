@@ -1,10 +1,8 @@
 package controller;
 
-import bro.CustomerBOimpl;
+import bro.custom.impl.CustomerBOimpl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import dao.custom.CustomerDAO;
-import dao.custom.impl.CustomersDAOimpl;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

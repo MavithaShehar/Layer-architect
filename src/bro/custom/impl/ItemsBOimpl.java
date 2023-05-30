@@ -1,4 +1,4 @@
-package bro;
+package bro.custom.impl;
 
 import bro.custom.ItemsBO;
 import dao.custom.ItemsDAO;

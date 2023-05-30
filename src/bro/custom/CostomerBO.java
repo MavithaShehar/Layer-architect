@@ -7,7 +7,7 @@ import model.CustomerDTO;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface CostomerBO {
+public interface CostomerBO extends SuperBO {
 
     CustomerDAO customerDAO = new CustomersDAOimpl();
 
