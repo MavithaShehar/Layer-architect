@@ -1,5 +1,6 @@
 package bro.custom;
 
+import bro.SuperBO;
 import dao.custom.CustomerDAO;
 import dao.custom.impl.CustomersDAOimpl;
 import model.CustomerDTO;

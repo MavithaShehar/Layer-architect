@@ -1,15 +1,14 @@
 package bro.custom;
 
-import dao.custom.CustomerDAO;
+import bro.SuperBO;
 import dao.custom.ItemsDAO;
-import dao.custom.impl.CustomersDAOimpl;
 import dao.custom.impl.ItemsDAOimpl;
 import model.ItemDTO;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ItemsBO extends SuperBO{
+public interface ItemsBO extends SuperBO {
 
     ItemsDAO itemsDAO = new ItemsDAOimpl();
 

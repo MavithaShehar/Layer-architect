@@ -1,4 +1,4 @@
-package bro.custom;
+package bro;
 
 import bro.custom.impl.CustomerBOimpl;
 import bro.custom.impl.ItemsBOimpl;
