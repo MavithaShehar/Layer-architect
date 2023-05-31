@@ -1,6 +1,7 @@
 package bro.custom.impl;
 
 import bro.custom.ItemsBO;
+import dao.DAOFactory;
 import dao.custom.ItemsDAO;
 import dao.custom.impl.ItemsDAOimpl;
 import model.ItemDTO;
@@ -10,7 +11,10 @@ import java.util.List;
 
 public class ItemsBOimpl implements ItemsBO {
 
-    ItemsDAO itemsDAO = new ItemsDAOimpl();
+   // ItemsDAO itemsDAO = new ItemsDAOimpl();
+
+    ItemsDAO itemsDAO = (ItemsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+
     @Override
     public List<ItemDTO> getAllItem() throws SQLException, ClassNotFoundException {
 

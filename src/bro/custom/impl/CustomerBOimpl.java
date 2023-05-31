@@ -1,6 +1,7 @@
 package bro.custom.impl;
 
 import bro.custom.CostomerBO;
+import dao.DAOFactory;
 import dao.custom.CustomerDAO;
 import dao.custom.impl.CustomersDAOimpl;
 import model.CustomerDTO;
@@ -11,7 +12,9 @@ import java.util.List;
 
 public class CustomerBOimpl implements CostomerBO {
 
-    CustomerDAO customerDAO = new CustomersDAOimpl();
+    //CustomerDAO customerDAO = new CustomersDAOimpl();
+
+    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
     @Override
     public List<CustomerDTO> getAllCustomer() throws SQLException, ClassNotFoundException {
 
