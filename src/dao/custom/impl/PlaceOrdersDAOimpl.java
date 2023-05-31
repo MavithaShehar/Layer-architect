@@ -3,24 +3,25 @@ package dao.custom.impl;
 
 import dao.SQLUtil;
 import dao.custom.PlaceOrdersDAO;
-import model.OrderDTO;
+import entity.Items;
+import entity.Order;
 
 import java.sql.*;
 import java.util.List;
 
 public class PlaceOrdersDAOimpl implements PlaceOrdersDAO {
     @Override
-    public List<OrderDTO> getAll() throws SQLException, ClassNotFoundException {
+    public List<Order> getAll() throws SQLException, ClassNotFoundException {
         return null;
     }
 
     @Override
-    public boolean saveAll(OrderDTO dto) throws SQLException, ClassNotFoundException {
-        return SQLUtil.execute("INSERT INTO Orders (oid, date, customerID) VALUES (?,?,?)",dto.getOrderId(),Date.valueOf(dto.getOrderDate()),dto.getCustomerId());
+    public boolean saveAll(Order dto) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("INSERT INTO `Orders` (oid, date, customerID) VALUES (?,?,?)",dto.getOid(),Date.valueOf(dto.getDate()),dto.getCustomerID());
     }
 
     @Override
-    public boolean update(OrderDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean update(Order dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 
@@ -42,7 +43,7 @@ public class PlaceOrdersDAOimpl implements PlaceOrdersDAO {
     }
 
     @Override
-    public OrderDTO search(String id) throws SQLException, ClassNotFoundException {
+    public Order search(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
 

@@ -1,9 +1,12 @@
 package dao.custom;
 
 import dao.CrudDAO;
+import entity.Items;
 import model.ItemDTO;
 
-public interface ItemsDAO extends CrudDAO<ItemDTO> {
+import java.sql.SQLException;
 
-  // Items unic methord
+public interface ItemsDAO extends CrudDAO<Items> {
+
+    // Items unic methord
 }

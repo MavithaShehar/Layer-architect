@@ -1,11 +1,14 @@
 package bro.custom.impl;
 
 import bro.custom.PurchaseOrderBO;
+import dao.DAOFactory;
+import dao.custom.CustomerDAO;
 import dao.custom.PlaceOrdersDAO;
 import dao.custom.impl.ItemsDAOimpl;
 import dao.custom.impl.OrderDetailDAOimpl;
 import dao.custom.impl.PlaceOrdersDAOimpl;
 import db.DBConnection;
+import model.CustomerDTO;
 import model.ItemDTO;
 import model.OrderDTO;
 import model.OrderDetailDTO;
@@ -15,9 +18,48 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class PurchaseOrderBOimpl implements PurchaseOrderBO {
+public class PurchaseOrderBOimpl<ItemDAO, OrderDAO, OrderDetailsDAO> implements PurchaseOrderBO {
 
-    
+    CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
+    ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+    OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
+    OrderDetailsDAO orderDetailsDAO = (OrderDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.DETAILS);
+
+    @Override
+    public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
+        return customerDAO.search(id);
+    }
+
+    @Override
+    public ItemDTO searchItem(String code) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public boolean existItem(String code) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public String generateOrderID() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public List<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public List<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
     public boolean purchaseOrder(String orderId, LocalDate orderDate, String customerId, List<OrderDetailDTO> orderDetails){
 
         /*Transaction*/

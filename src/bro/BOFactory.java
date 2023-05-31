@@ -12,21 +12,22 @@ public class BOFactory {
         }
 
         public static BOFactory getBoFactory(){
+
             return (boFactory==null)? boFactory=new BOFactory() : boFactory;
         }
 
         public enum BOTypes{
-            CUSTOMER,ITEM,PO
+
+            CUSTOMER,ITEM,PURCHASE_ORDER
         }
 
-        //Object creation logic for BO objects
         public SuperBO getBO(BOTypes types){
             switch (types){
                 case CUSTOMER:
                     return new CustomerBOimpl();
                 case ITEM:
                     return new ItemsBOimpl();
-                case PO:
+                case PURCHASE_ORDER:
                     return new PurchaseOrderBOimpl();
                 default:
                     return null;
